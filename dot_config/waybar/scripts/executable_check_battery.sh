@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bat=/sys/class/power_supply/hidpp_battery_4
+bat=/sys/class/power_supply/BAT0
 CRIT=${1:-15}
 
 FILE=~/.config/waybar/scripts/notified
