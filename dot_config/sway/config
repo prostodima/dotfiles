@@ -29,7 +29,7 @@ set $menu rofi -show combi -combi-modes "window,drun,run" -modes combi
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/wallpapers/wp7.jpg fill
+output * bg ~/wallpaper.jpg fill
 #
 # Example configuration:
 #
