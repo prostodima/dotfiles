@@ -242,8 +242,8 @@ bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 bindsym --to-code $mod+p exec grim -g "$(slurp -d)" - | wl-copy
 bindsym --to-code ctrl+shift+h exec clipman pick -t rofi
 bindsym --to-code $mod+c exec gnome-calculator  
-bindsym --to-code $mod+t exec flatpak run org.telegram.desktop  
-bindsym --to-code $mod+m exec flatpak run com.bitwarden.desktop  
+bindsym --to-code $mod+t exec telegram-desktop  
+bindsym --to-code $mod+m exec bitwarden-desktop  
 
 bar swaybar_command waybar
 #exec swaybar
@@ -292,10 +292,10 @@ assign [class="Slack"] 3
 assign [class="thunderbird"] 3
 
 exec swaymsg "workspace 2; exec google-chrome; exec google-chrome;"
-exec swaymsg "exec flatpak run com.bitwarden.desktop;"
-exec swaymsg "workspace 3; exec flatpak run com.slack.Slack;"
+exec swaymsg "exec bitwarden-desktop;"
+exec swaymsg "workspace 3; exec slack;"
 exec swaymsg "workspace 3; exec thunderbird;"
-exec swaymsg "exec flatpak run org.telegram.desktop;"
+exec swaymsg "exec telegram-desktop;"
 exec swaymsg "workspace 1; exec alacritty;"
 
 # Set colors
