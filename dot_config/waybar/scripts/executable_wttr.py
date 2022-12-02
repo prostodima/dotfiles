@@ -88,7 +88,7 @@ def format_chances(hour):
     return ", ".join(conditions)
 
 
-data['text'] = "<span font='14' rise='-1000'>" + WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + "</span>" + \
+data['text'] = "<span font='16' rise='-1000'>" + WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + "</span>" + \
     " " + weather['current_condition'][0]['temp_C']+ "°"
 #data['text'] = weather['current_condition'][0]['FeelsLikeC']+"°"
 
