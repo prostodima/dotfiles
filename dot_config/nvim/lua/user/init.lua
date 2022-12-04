@@ -160,9 +160,9 @@ local config = {
     },
     -- easily add or disable built in mappings added during LSP attaching
     mappings = {
-      n = {
+      --n = {
         -- ["<leader>lf"] = false -- disable formatting keymap
-      },
+      --},
     },
     -- add to the global LSP on_attach function
     -- on_attach = function(client, bufnr)
@@ -222,6 +222,7 @@ local config = {
          run = ":GoUpdateBinaries", disable = false 
       },
       { "arnaud-lb/vim-php-namespace" },
+      { "j-hui/fidget.nvim" },
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
       -- { "andweeb/presence.nvim" },
@@ -257,7 +258,8 @@ local config = {
       return config -- return final config table
     end,
     treesitter = { -- overrides `require("treesitter").setup(...)`
-      -- ensure_installed = { "lua" },
+      ensure_installed = { "tsx", "php", "go", "gomod", "javascript", "json", "yaml", "bash" },
+      indent = { enable = true, }
     },
     -- use mason-lspconfig to configure LSP installations
     ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
