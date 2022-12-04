@@ -290,6 +290,7 @@ for_window [app_id="pavucontrol"] floating enable, resize set width 680 height 4
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 assign [app_id="google-chrome"] 2 
+assign [class="Google-chrome"] 2 
 assign [class="Slack"] 3
 assign [class="thunderbird"] 3
 
