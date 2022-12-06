@@ -241,7 +241,8 @@ include /etc/sway/config.d/*
 bindsym --to-code $mod+shift+x exec swaylock -f -c 000000
 bindsym --to-code $mod+x exec nwg-bar -t bar.json
 bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
-bindsym --to-code $mod+p exec grim -g "$(slurp -d)" - | wl-copy
+bindsym --to-code $mod+o exec grim -g "$(slurp -d)" - | wl-copy
+bindsym --to-code $mod+p exec tessen 
 bindsym --to-code ctrl+shift+h exec clipman pick -t rofi
 bindsym --to-code $mod+c exec gnome-calculator  
 bindsym --to-code $mod+t exec telegram-desktop  
@@ -290,7 +291,6 @@ for_window [app_id="pavucontrol"] floating enable, resize set width 680 height 4
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 assign [app_id="google-chrome"] 2 
-assign [class="Google-chrome"] 2 
 assign [class="Slack"] 3
 assign [class="thunderbird"] 3
 
