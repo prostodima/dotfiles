@@ -132,6 +132,7 @@ input type:touchpad {
 #
 # Workspaces:
 #
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -241,12 +242,11 @@ include /etc/sway/config.d/*
 bindsym --to-code $mod+shift+x exec swaylock -f -c 000000
 bindsym --to-code $mod+x exec nwg-bar -t bar.json
 bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
-bindsym --to-code $mod+o exec grim -g "$(slurp -d)" - | wl-copy
-bindsym --to-code $mod+p exec tessen 
+bindsym --to-code $mod+p exec tessen
 bindsym --to-code ctrl+shift+h exec clipman pick -t rofi
 bindsym --to-code $mod+c exec gnome-calculator  
-bindsym --to-code $mod+t exec telegram-desktop  
-bindsym --to-code $mod+m exec bitwarden-desktop  
+bindsym --to-code $mod+t exec flatpak run org.telegram.desktop 
+bindsym --to-code $mod+m exec flatpak run com.bitwarden.desktop 
 
 bar swaybar_command waybar
 #exec swaybar
@@ -281,6 +281,7 @@ exec_always {
 
 
 for_window [app_id="org.telegram.desktop"] floating enable, resize set width 1180 height 1000, move position center
+for_window [class="whatsapp-desktop-linux"] floating enable, resize set width 1180 height 1000, move position center
 for_window [class="Hubstaff"] floating enable, resize set width 400 height 400, move position center
 for_window [app_id="blueman-manager"] floating enable, resize set width 680 height 400, move position center
 for_window [class="Bitwarden"] floating enable, resize set width 1080 height 800, move position center
@@ -291,14 +292,15 @@ for_window [app_id="pavucontrol"] floating enable, resize set width 680 height 4
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 assign [app_id="google-chrome"] 2 
+assign [class="Google-chrome"] 2 
 assign [class="Slack"] 3
 assign [class="thunderbird"] 3
 
 exec swaymsg "workspace 2; exec google-chrome-stable; exec google-chrome-stable;"
-exec swaymsg "exec bitwarden-desktop;"
-exec swaymsg "workspace 3; exec slack;"
+exec swaymsg "exec flatpak run com.bitwarden.desktop;"
+exec swaymsg "workspace 3; exec flatpak run com.slack.Slack;"
 exec swaymsg "workspace 3; exec thunderbird;"
-exec swaymsg "exec telegram-desktop;"
+exec swaymsg "exec flatpak run org.telegram.desktop;"
 exec swaymsg "workspace 1; exec alacritty;"
 
 # Set colors
@@ -310,3 +312,22 @@ set $br #928374
 client.focused          $br     $br     $fg     $bg       $br
 client.focused_inactive $bg     $bg     $fg     $bg       $bg
 client.unfocused        $bg     $bg     $fg     $bg       $bg
+
+#
+# Screen capture
+#
+set $screenshot 1 selected, 2 whole, 3 selected clipboard, 4 whole clipboard, 5 swappy
+mode "$screenshot" {
+    bindsym 1 exec 'grim -g "$(slurp)" ~/screenshots/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym 2 exec 'grim ~/screenshots/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym 3 exec 'grim -g "$(slurp)" - | wl-copy', mode "default"
+    bindsym 4 exec 'grim - | wl-copy', mode "default"
+    bindsym 5 exec 'grim -g "$(slurp)" - | swappy -f -', mode "default"
+
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+o mode "default"
+}
+
+bindsym $mod+o mode "$screenshot"
